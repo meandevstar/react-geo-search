@@ -1,1 +1,1 @@
-export { default as shopAPI } from 'src/api/shops'
+export { default as shopAPI } from 'api/shops'
