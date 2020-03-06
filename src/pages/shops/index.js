@@ -1,7 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import cx from 'classnames'
 import { shopActions, shopSelector } from 'store/shops'
-import ShopList from 'components/shops'
+import ShopList from 'components/shop-list'
+import ShopMap from 'components/shop-map'
+import styles from './index.module.scss'
 
 export default function Shops() {
 	const dispatch = useDispatch()
@@ -11,15 +14,18 @@ export default function Shops() {
 		dispatch(shopActions.getShops())
 	}, [dispatch])
 
+  const onPosChange = useCallback((pos, limit) => {
+    console.log(pos, limit)
+    dispatch(shopActions.getShops(pos, limit))
+  }, [dispatch])
+
 	return (
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-sm-8">
-          <div class="jumbotron p-3 justify-content-center my-5">
-            <h1 class="display-4 text-center mb-3">FIND SHOPS NEAR ME</h1>
-            <ShopList data={data} />
-          </div>
-        </div>
+    <div className={styles.root}>
+      <div className={styles.mapContainer}>
+        <ShopMap data={data} onPosChange={onPosChange} />
+      </div>
+      <div className={styles.shopContainer}>
+        <ShopList data={data} />
        </div>
     </div>
 	)

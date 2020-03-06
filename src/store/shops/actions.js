@@ -9,7 +9,12 @@ export const shopActions = createActions(
 	{
 		SET_LOADING: undefined,
 		SET_FAILURE: undefined,
-		GET_SHOPS: shopAPI.getShops
+		GET_SHOPS: async (pos = {}, limit = 20) => {
+      return shopAPI.getShops({
+        ...pos,
+        limit
+      })
+    }
 	},
 	options
 )
