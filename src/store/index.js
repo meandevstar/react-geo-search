@@ -4,9 +4,11 @@ import configureStore from 'store/config'
 import history from 'store/history'
 
 import welcomeReducer from 'store/welcome/reducers'
+import shopsReducer from 'store/shops/reducers'
 
 const rootReducer = combineReducers({
 	welcome: welcomeReducer,
+	shops: shopsReducer,
 	router: connectRouter(history)
 })
 

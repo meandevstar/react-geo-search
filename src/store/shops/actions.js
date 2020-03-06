@@ -13,11 +13,15 @@ export const shopActions = createActions(
 			try {
 				const shops = await shopAPI.getShops(params);
 
-				console.log(shops);
-
-				return shops
+				return shops.map(({ fields }) => ({
+					...fields,
+					location: fields.location
+						.match(/(?<=\().*?(?=\))/g)[0]
+						.split(' ')
+						.map(l => Number(l))
+				}));
 			} catch (err) {
-				console.log(err)
+				return [];
 			}
 		}
 	},

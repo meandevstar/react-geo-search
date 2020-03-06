@@ -20,7 +20,7 @@ export const shopReducer = handleActions(
 			})
 		],
 		[
-			shopActions.setShops,
+			shopActions.getShops,
 			(state, action) => ({
 				...state,
 				loading: false,

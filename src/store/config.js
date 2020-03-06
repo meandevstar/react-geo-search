@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
+import promise from 'redux-promise'
 // `react-router-redux` is deprecated, so we use `connected-react-router`.
 // This provides a Redux middleware which connects to our `react-router` instance.
 import { routerMiddleware } from 'connected-react-router'
@@ -16,7 +17,7 @@ export default function configureStore(history, initialState, rootReducer) {
   const store = createStore(
     rootReducer,
     initialState,
-    composeEnhancers(applyMiddleware(routerMiddleware(history), thunk))
+    composeEnhancers(applyMiddleware(routerMiddleware(history), thunk, promise))
   )
 
   return { store }
