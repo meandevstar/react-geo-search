@@ -43,7 +43,7 @@ export default function ShopMap({ data, center, zoom, onPosChange }) {
   const onMapClick = useCallback(e => {
     setPos(e.latlng)
     onPosChange(e.latlng)
-  }, [setPos])
+  }, [onPosChange])
 
   useEffect(() => {
     if (!data.length) {
@@ -55,7 +55,7 @@ export default function ShopMap({ data, center, zoom, onPosChange }) {
       newBounds.push(pos)
     }
     setBounds(newBounds)
-  }, [data]);
+  }, [data, pos]);
 
   return (
     <Map className={styles.root} bounds={bounds} onClick={onMapClick}>

@@ -15,7 +15,6 @@ export default function Shops() {
 	}, [dispatch])
 
   const onPosChange = useCallback((pos, limit) => {
-    console.log(pos, limit)
     dispatch(shopActions.getShops(pos, limit))
   }, [dispatch])
 
