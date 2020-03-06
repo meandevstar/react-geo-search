@@ -23,8 +23,8 @@ export const shopReducer = handleActions(
 			shopActions.getShops,
 			(state, action) => ({
 				...state,
+        ...action.payload,
 				loading: false,
-				data: action.payload
 			})
 		]
 	]),

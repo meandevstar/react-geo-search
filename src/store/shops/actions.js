@@ -9,21 +9,7 @@ export const shopActions = createActions(
 	{
 		SET_LOADING: undefined,
 		SET_FAILURE: undefined,
-		GET_SHOPS: async (params = {}) => {
-			try {
-				const shops = await shopAPI.getShops(params);
-
-				return shops.map(({ fields }) => ({
-					...fields,
-					location: fields.location
-						.match(/(?<=\().*?(?=\))/g)[0]
-						.split(' ')
-						.map(l => Number(l))
-				}));
-			} catch (err) {
-				return [];
-			}
-		}
+		GET_SHOPS: shopAPI.getShops
 	},
 	options
 )
